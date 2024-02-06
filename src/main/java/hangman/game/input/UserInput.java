@@ -1,4 +1,4 @@
-package hangman.game;
+package hangman.game.input;
 
 public interface UserInput {
 

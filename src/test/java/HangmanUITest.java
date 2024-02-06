@@ -1,7 +1,7 @@
 import hangman.exception.NonAlphabeticInputException;
 import hangman.game.HangmanGameLogic;
 import hangman.game.HangmanUI;
-import hangman.game.UserInput;
+import hangman.game.input.UserInput;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyChar;
