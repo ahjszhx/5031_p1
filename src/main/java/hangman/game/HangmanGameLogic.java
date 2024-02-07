@@ -18,7 +18,7 @@ import static hangman.game.GlobalReference.wordList;
 public class HangmanGameLogic {
 
     // The word that players try to guess.
-    private final String secretWord;
+    private String secretWord;
 
     // Letters that have been guessed by the player.
     private final Set<Character> guessedLetters;
@@ -35,8 +35,15 @@ public class HangmanGameLogic {
      */
     public HangmanGameLogic() {
         secretWord = wordList.get(new Random().nextInt(wordList.size()));
-        System.out.println(secretWord);
+        //System.out.println(secretWord);
         guessedLetters = new HashSet<>();
+        wrongGuesses = 0;
+        score = MAX_SCORE;
+    }
+
+    public void resetGame(){
+        this.secretWord = wordList.get(new Random().nextInt(wordList.size()));
+        guessedLetters.clear();
         wrongGuesses = 0;
         score = MAX_SCORE;
     }
