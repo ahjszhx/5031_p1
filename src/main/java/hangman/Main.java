@@ -25,7 +25,7 @@ public class Main {
 
         // Initialize the HangmanUI with a new instance of HangmanGameLogic and the scanner input.
         // This setup ties the user interface to the game logic and input mechanism.
-        HangmanUI hangmanUI = new HangmanUI(new HangmanGameLogic(),scannerInput);
+        HangmanUI hangmanUI = new HangmanUI(HangmanGameLogic.getInstance(),scannerInput);
 
         // Start the game. This method call begins the gameplay loop, handling user inputs and game state updates
         // until the game concludes (either win or lose).

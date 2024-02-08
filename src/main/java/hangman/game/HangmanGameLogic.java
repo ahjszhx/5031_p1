@@ -17,6 +17,8 @@ import static hangman.game.GlobalReference.wordList;
  */
 public class HangmanGameLogic {
 
+    private static HangmanGameLogic instance;
+
     // The word that players try to guess.
     private String secretWord;
 
@@ -33,12 +35,20 @@ public class HangmanGameLogic {
      * Constructs a new HangmanGameLogic instance, selecting a secret word at random
      * from a predefined list and initializing the game state.
      */
-    public HangmanGameLogic() {
+    private HangmanGameLogic() {
         secretWord = wordList.get(new Random().nextInt(wordList.size()));
         //System.out.println(secretWord);
         guessedLetters = new HashSet<>();
         wrongGuesses = 0;
         score = MAX_SCORE;
+    }
+
+
+    public static HangmanGameLogic getInstance(){
+        if(instance==null){
+            instance = new HangmanGameLogic();
+        }
+        return instance;
     }
 
     public void resetGame(){

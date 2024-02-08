@@ -2,7 +2,6 @@ package hangman.game;
 
 
 import hangman.exception.NonAlphabeticInputException;
-import hangman.game.input.ScannerInput;
 import hangman.game.input.UserInput;
 
 /**
@@ -27,18 +26,6 @@ public class HangmanUI {
     public HangmanUI(HangmanGameLogic gameLogic, UserInput userInput) {
         this.gameLogic = gameLogic;
         this.userInput = userInput;
-    }
-
-    /**
-     * Constructs a HangmanUI instance with the specified game logic and scanner input mechanism.
-     * This constructor is specific for cases where a ScannerInput is provided for user input.
-     *
-     * @param gameLogic The game logic to be used by this UI.
-     * @param scannerInput The scanner input mechanism to be used for reading user input.
-     */
-    public HangmanUI(HangmanGameLogic gameLogic, ScannerInput scannerInput){
-        this.gameLogic = gameLogic;
-        this.userInput = scannerInput;
     }
 
     /**

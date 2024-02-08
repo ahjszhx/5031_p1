@@ -33,7 +33,8 @@ public class HangmanLogicTest {
      */
     @BeforeEach
     void setUp() {
-        gameLogic = new HangmanGameLogic();
+        gameLogic = HangmanGameLogic.getInstance();
+        gameLogic.resetGame();
         for (char ch = 'a'; ch <= 'z'; ch++) {
             errorInputAlphabet.add(ch);
         }
