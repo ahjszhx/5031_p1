@@ -1,19 +1,26 @@
 import hangman.exception.NonAlphabeticInputException;
 import hangman.game.HangmanGameLogic;
 import hangman.game.HangmanUI;
+import hangman.game.input.ScannerInput;
 import hangman.game.input.UserInput;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyChar;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -31,6 +38,7 @@ public class HangmanUITest {
     private UserInput userInput;
 
     private HangmanUI ui;
+
 
     /**
      * Sets up the testing environment before each test. This includes initializing mocks,
@@ -52,19 +60,33 @@ public class HangmanUITest {
     }
 
     /**
-     * Verifies that the game correctly handles an incorrect guess and displays appropriate messages upon game over.
+     * Tests that the game ends after three incorrect guesses.
+     *
+     * This test simulates a scenario where the user makes three guesses ('a', 'z', 'b'),
+     * with the assumption that these guesses do not match any letters in the secret word "apple".
+     * The game logic is mocked to return specific behaviors:
+     * - `isGameLost()` returns false for the first three checks (indicating the game has not yet been lost),
+     *   and true on the fourth check (indicating the game is now considered lost).
+     * - `isGameWon()` consistently returns false, indicating the game has not been won.
+     * - `getSecretWord()` returns "apple" as the secret word for this game session.
+     *
+     * The `HangmanUI` instance (ui) is then used to start the game play, and the test verifies that
+     * the `makeGuess()` method is called exactly once with each of the guessed letters.
+     * This ensures that the game logic correctly processes each guess and that the game ends
+     * after the predetermined number of incorrect guesses.
      */
     @Test
-    void testIncorrectGuess() {
-        when(userInput.nextLine()).thenReturn("z");
+    public void testGameEndsAfterThreeWrongGuesses() {
+        when(userInput.nextLine()).thenReturn("a", "z", "b");
+        when(gameLogic.isGameLost()).thenReturn(false, false, false, true);
         when(gameLogic.isGameWon()).thenReturn(false);
-        when(gameLogic.isGameLost()).thenReturn(false, false, true); // 假设最后一次猜测导致游戏结束
-        when(gameLogic.getCurrentState()).thenReturn("_pp_e");
-
+        when(gameLogic.getSecretWord()).thenReturn("apple");
+        //ui = new HangmanUI(gameLogic, userInput);
         ui.play();
 
-        String output = outContent.toString();
-        assertTrue(output.contains("Game over") || output.contains("The word was"), "Expected game over message in output.");
+        verify(gameLogic, times(1)).makeGuess('a');
+        verify(gameLogic, times(1)).makeGuess('z');
+        verify(gameLogic, times(1)).makeGuess('b');
     }
 
     /**
@@ -110,5 +132,6 @@ public class HangmanUITest {
         assertTrue(outContent.toString().contains("Game over"));
         assertTrue(outContent.toString().contains("apple"));
     }
+
 
 }

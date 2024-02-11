@@ -8,3 +8,4 @@ mvn test
 
 ## How to run it
 java -jar target/Hangman-1.0.jar
+

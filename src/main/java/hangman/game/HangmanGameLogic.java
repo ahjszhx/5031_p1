@@ -37,7 +37,7 @@ public class HangmanGameLogic {
      */
     private HangmanGameLogic() {
         secretWord = wordList.get(new Random().nextInt(wordList.size()));
-        //System.out.println(secretWord);
+        System.out.println(secretWord);
         guessedLetters = new HashSet<>();
         wrongGuesses = 0;
         score = MAX_SCORE;

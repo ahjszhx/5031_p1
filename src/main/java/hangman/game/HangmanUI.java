@@ -62,7 +62,7 @@ public class HangmanUI {
         try {
             input = userInput.nextLine().toLowerCase().charAt(0);
         } catch (Exception e) {
-            System.out.println("Please input a letter");
+            System.out.println("Input must be a single alphabetic character.");
         }
         return input;
     }
