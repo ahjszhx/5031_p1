@@ -37,13 +37,18 @@ public class HangmanGameLogic {
      */
     private HangmanGameLogic() {
         secretWord = wordList.get(new Random().nextInt(wordList.size()));
-        System.out.println(secretWord);
+        //System.out.println(secretWord);
         guessedLetters = new HashSet<>();
         wrongGuesses = 0;
         score = MAX_SCORE;
     }
 
-
+    /**
+     * Provides access to the singleton instance of the game logic. If the instance
+     * does not exist, it creates one; otherwise, it returns the existing instance.
+     *
+     * @return The singleton instance of HangmanGameLogic.
+     */
     public static HangmanGameLogic getInstance(){
         if(instance==null){
             instance = new HangmanGameLogic();
@@ -51,6 +56,10 @@ public class HangmanGameLogic {
         return instance;
     }
 
+    /**
+     * Resets the game to its initial state with a new secret word and clears
+     * all guesses and scores.
+     */
     public void resetGame(){
         this.secretWord = wordList.get(new Random().nextInt(wordList.size()));
         guessedLetters.clear();
@@ -120,19 +129,42 @@ public class HangmanGameLogic {
         return wrongGuesses >= MAX_TRIES;
     }
 
-    // Getters for accessing the secret word, guessed letters, wrong guesses count, and score.
+    /**
+     * Gets the secret word that players are trying to guess.
+     *
+     * @return The secret word for the current game.
+     */
     public String getSecretWord() {
         return secretWord;
     }
 
+    /**
+     * Retrieves the set of characters that have been guessed by the player.
+     * This includes both correct and incorrect guesses.
+     *
+     * @return A set of guessed letters.
+     */
     public Set<Character> getGuessedLetters() {
         return guessedLetters;
     }
 
+    /**
+     * Gets the number of incorrect guesses made by the player.
+     * This value is used to determine if the game is lost.
+     *
+     * @return The count of wrong guesses.
+     */
     public int getWrongGuesses() {
         return wrongGuesses;
     }
 
+    /**
+     * Retrieves the player's current score.
+     * The score decreases with each incorrect guess and can be used to
+     * track the player's performance throughout the game.
+     *
+     * @return The current score of the player.
+     */
     public int getScore() {
         return score;
     }

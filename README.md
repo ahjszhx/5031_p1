@@ -9,3 +9,6 @@ mvn test
 ## How to run it
 java -jar target/Hangman-1.0.jar
 
+## How to generate java doc
+mvn javadoc:javadoc
+

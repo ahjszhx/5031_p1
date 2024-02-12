@@ -20,7 +20,7 @@ public class WordParser {
      * This static method reads each line from the file, assuming each line contains a single word,
      * and adds it to a List after trimming any leading or trailing whitespace.
      *
-     * @return A List<String> containing all the words read from the file. If an error occurs during reading,
+     * @return A List containing all the words read from the file. If an error occurs during reading,
      * the method prints the stack trace and exits the program to prevent further execution with incomplete data.
      */
     public static List<String> loadWords() {
