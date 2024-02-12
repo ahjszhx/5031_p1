@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"hangman"},{"l":"hangman.exception"},{"l":"hangman.game"},{"l":"hangman.game.input"},{"l":"hangman.utils"},{"l":"所有程序包","u":"allpackages-index.html"}];updateSearchResults();
