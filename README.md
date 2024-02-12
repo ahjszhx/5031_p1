@@ -1,4 +1,6 @@
 # README
+## github 
+git clone https://github.com/ahjszhx/5031_p1.git
 
 ## How to build it
 mvn clean package
