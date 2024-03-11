@@ -1,0 +1,23 @@
+image: java:17
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script: ./mvnw package
+  artifacts:
+    paths:
+      - target/Hangman-1.0.jar
+
+
+test:jdk17:
+  stage: test
+  script:
+  - 'mvn $MAVEN_CLI_OPTS test'
+  only:
+  variables:
+  - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+
